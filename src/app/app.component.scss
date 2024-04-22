@@ -1,0 +1,389 @@
+header {
+    width: 100%;
+    background-color: #fff;
+    h1 {
+        width: 100%;
+        color: #333;
+        font-size: 1.25em;
+        font-family: arial, helvetica, sans-serif, verdana;
+        font-style: normal;
+        font-weight: bold;
+        overflow: hidden;
+        white-space: nowrap;
+        padding: 7px 12px 7px 12px;
+    }
+    .buttons {
+        background-color: #ddd;
+        padding: 5px 10px;
+        border-top: 3px solid #ffe600;
+        button {
+            background-color: #e2e2e2;
+            border-color: #a2a2a2;
+            color: #212121;
+            background-image: linear-gradient(180deg, #fff 1px, #e2e2e2 1px);
+            border-style: solid !important;
+            border-width: 1px !important;
+            cursor: pointer;
+            font-size: .75em;
+            font-weight: normal;
+            font-style: normal;
+            padding: 2px 7px 2px 7px;
+            text-align: center;
+            text-decoration: none;
+            white-space: nowrap;
+            display: inline-block;
+            line-height: 1.35;
+            margin-right: 10px;
+        }
+    }
+    p {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        font-size: 0.8em;
+        font-family: arial, helvetica, sans-serif, verdana;
+        font-style: normal;
+        img {
+            margin-right: 5px;
+            width: 15px;
+        }
+    }
+}
+main {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    font-family: arial, helvetica, sans-serif, verdana;
+    section {
+        height: fit-content;
+        align-items: center;        
+        position: relative;
+        display: block;
+        padding: 20px 10px 20px 20px;
+        .content {
+            background-color: #fff;
+            height: fit-content;
+            width: 100%;
+            padding-bottom: 10px;
+            border-top: 2px solid #007cbf;
+        }
+        h2 {
+            box-sizing: border-box;
+            cursor: default;
+            font-family: arial, helvetica, sans-serif, verdana;
+            font-weight: bold;
+            font-style: normal;
+            white-space: nowrap;
+            line-height: normal;
+            vertical-align: middle;
+            color: #333;
+            font-size: 1.125em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            img {
+                margin-right: 20px;
+            }
+        }
+        &.calendar_section {
+            width: 50%;
+            .content {
+                .status {
+                    display: flex;
+                    align-items: center;
+                    font-size: 0.75rem;
+                    padding-left: 10px;
+                    div {
+                        width: 16px;
+                        height: 16px;
+                        margin: 0 5px 0 10px;
+                        &.submitted {
+                            background-color: #93d88d;
+                        }
+                        &.draft {
+                            background-color: #fca33f;
+                        }
+                        &.nonworking {
+                            background-color: #dcdcdc;
+                        }
+                        &.current {
+                            background-color: #007cbf;
+                        }
+                        &.today {
+                            background-color: none;
+                            border: 3px solid #ffea29;
+                        }
+                    }
+                }
+            }
+            
+           .flex {
+            margin: 10px;
+            background-color: white;
+            display: flex;
+            padding: 10px;
+            width: fit-content;
+            border: 1px solid #dcdcdc;
+                .month {
+                    h2 {
+                        color: #333;
+                        cursor: default;
+                        font-family: arial, helvetica, sans-serif, verdana;
+                        font-size: .75em;
+                        font-weight: bold;
+                        height: 22px;
+                        text-align: center;
+                        color: #333;
+                        cursor: default;
+                        font-family: arial, helvetica, sans-serif, verdana;
+                        font-size: .75em;
+                        font-weight: bold;
+                        margin-bottom: 5px;
+                        text-align: center;
+                        justify-content: center;
+                    }
+                    .listdays {
+                        display: flex;
+                        flex-wrap: wrap;
+                        width: 160px;
+                        margin: 0 5px;
+                        .weekDay {
+                            background-color: #fff;
+                            border-color: #fff !important;
+                            border-style: none !important;
+                            border-width: 0;
+                            color: #007cbf;
+                            cursor: default;
+                            font-family: arial, helvetica, sans-serif, verdana;
+                            font-size: 10px;
+                            text-align: center;
+                            width: 22px;
+                            font-weight: bold;
+                            height: 16px;
+                        }
+                        .day {
+                            background-color: lightgray;
+                            text-align: center;
+                            border: 1px solid gray;
+                            border-color: #fff;
+                            border-style: solid;
+                            border-width: 1px;
+                            width: 22px;
+                            min-width: 22px;
+                            line-height: normal;
+                            padding: 0 0 0 0;
+                            height: 22px;
+                            font-family: arial, helvetica, sans-serif, verdana;
+                            font-size: .75em;
+                            text-align: center;
+                            color:#000;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            // week number: color: #007cbf;
+                            &:hover {
+                                background-color: blue;
+                                cursor: pointer;
+                            }
+                            &.disabled {
+                                color: #656565;
+                                background-color: #f1f1f1;
+                            }
+                            &.nonworking {
+                                background-color: #dcdcdc !important;
+                                color: #000 !important;
+                            }
+                            &.submitted {
+                                background-color: #93d88d !important;
+                                color: #000 !important;
+                            }
+                            &.default {
+                                background-color: #f2f2f2;
+                                color: #333;
+                            }
+                            &.today {
+                                background-color: #007cbf;
+                                border: 3px solid #ffea29;
+                            }
+                            &.current {
+                                background-color: #007cbf;
+                                color: #fff;
+                            }
+    
+    
+                        }
+                    }
+                    
+                }
+                
+           }
+
+        }
+        &.summary {
+            background-color: #fff;
+            width: 50%;
+            .content {
+                background-color: white;
+                padding-bottom: 26px;
+            }
+            table {
+                width: 100%;
+                table-layout: fixed;
+                border-collapse: collapse;
+                border: none;
+                thead {
+                    td {
+                        background-color: #999;
+                        color: white;
+                        font-family: arial, helvetica, sans-serif, verdana;
+                        font-weight: normal;
+                        line-height: 1.3;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        padding: 6px 8px;
+                        white-space: nowrap;
+                    }
+                }
+                td {
+                    background-color: #eaedf0;
+                    border: 1px solid #ccc;
+                    font-family: arial, helvetica, sans-serif, verdana;
+                    font-size: .75em;
+                    font-style: normal;
+                    height: 26px;
+                    vertical-align: middle;
+                    line-height: 1.3;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    padding: 6px 8px;
+                    white-space: nowrap;
+                    text-align: center;
+                    &.title {
+                        font-weight: bold;
+                        text-align: left;
+                    }
+                }
+                .whitespace {
+                    height: 26px;
+                    background-color: white;
+                    width: 100%;
+                }
+            }
+            
+        
+        }
+        &.timesheet {
+            background-color: #fff;
+            width: 100%;
+            .buttons {
+                background-color: #ddd;
+                padding: 5px 10px;
+                margin-top: 10px;
+                button {
+                    background-color: #e2e2e2;
+                    border-color: #a2a2a2;
+                    color: #212121;
+                    background-image: linear-gradient(180deg, #fff 1px, #e2e2e2 1px);
+                    border-style: solid !important;
+                    border-width: 1px !important;
+                    cursor: pointer;
+                    font-size: .75em;
+                    font-weight: normal;
+                    font-style: normal;
+                    padding: 2px 7px 2px 7px;
+                    text-align: center;
+                    text-decoration: none;
+                    white-space: nowrap;
+                    display: inline-block;
+                    line-height: 1.35;
+                    margin-right: 10px;
+                }
+            }
+            table {
+                width: 100%;
+                table-layout: fixed;
+                border-collapse: collapse;
+                border: none;
+                thead {
+                    td {
+                        background-color: #999;
+                        color: #fff;
+                        font-family: arial, helvetica, sans-serif, verdana;
+                        font-weight: normal;
+                        line-height: 1.3;
+                        padding: 6px 8px;
+                        height: 40px;
+                        border-right: 1px solid #777;
+                        overflow: unset;
+                        white-space: unset;
+                        font-family: arial, helvetica, sans-serif, verdana;
+                        font-size: .75em;
+                    }
+                }
+                tbody {
+                    tr {
+                        border-bottom: 1px solid #ececec;
+                        &:first-of-type {
+                            td {
+                                background-color: #eaedf0;
+                                &:first-of-type {
+                                    background-color: #fff;
+                                }
+                            }
+                        }
+                        td {
+                            
+                            font-family: arial, helvetica, sans-serif, verdana;
+                            font-size: .75em;
+                            font-style: normal;
+                            height: 26px;
+                            vertical-align: middle;
+                            line-height: 1.3;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            padding: 1px;
+                            white-space: nowrap;
+                            background-color: #fff;
+        
+                            &.det {
+                                width: 40px;
+                            }
+                            &.disabled {
+                                background-color: #eaedf0;
+                                &:first-of-type {
+                                    background-color: #e5e5e5;
+                                }
+                            }
+                            &.title {
+                                font-weight: bold;
+                            }
+                            input {
+                                border: none;
+                                width: 100%;
+                                height: 100%;
+                                cursor: pointer;
+                                &:active, &:focus {
+                                    border: 1px dotted black;
+                                    outline: none;
+                                }
+
+                                &::-webkit-outer-spin-button,
+                                &::-webkit-inner-spin-button {
+                                    /* display: none; <- Crashes Chrome on hover */
+                                    -webkit-appearance: none;
+                                    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+                                }
+
+                                &[type=number] {
+                                    -moz-appearance:textfield; /* Firefox */
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+               
+            }
+        }
+    }
+}

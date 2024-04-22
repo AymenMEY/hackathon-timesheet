@@ -1,0 +1,197 @@
+<header>
+  <h1>Record Working Times</h1>
+  <div class="buttons">
+    <button>Save as Draft</button>
+    <button (click)="submitTimesheet()">Submit</button>
+    <button>Switch User</button>
+  </div>
+  <p *ngIf="timesheet_submitted"><img src="/assets/success.png"/>Timesheet submitted !</p>
+</header>
+<main class="main">
+
+  <section class="calendar_section">
+    <h2><img src="/assets/arrow.png" />Calendar</h2>
+    <div class="content">
+      <div class="flex">
+        <div class="month">
+          <h2>February 2024</h2>
+          <div class="listdays">
+            <div class="weekDay" *ngFor="let weekDay of weekDays">{{weekDay}}</div>
+            <div class="day default" [ngClass]="getDateStatus(date, 1)" (click)="selectDate(date)" *ngFor="let date of febDays">{{ date.getDate()}}</div>
+          </div>
+        </div>
+        <div class="month">
+          <h2>March 2024</h2>
+          <div class="listdays">
+            <div class="weekDay" *ngFor="let weekDay of weekDays">{{weekDay}}</div>
+            <div class="day default" [ngClass]="getDateStatus(date, 2)" (click)="selectDate(date)" *ngFor="let date of marchDays; index as i">{{date.getDate()}}</div>
+          </div>
+        </div>
+        <div class="month">
+          <h2>April 2024</h2>
+          <div class="listdays">
+            <div class="weekDay" *ngFor="let weekDay of weekDays">{{weekDay}}</div>
+            <div class="day default" [ngClass]="getDateStatus(date, 3)"  (click)="selectDate(date)" *ngFor="let date of aprilDays">{{ date.getDate() }}</div>
+          </div>
+        </div>
+     </div>
+     <div class="info">
+      <div class="status">
+        <div class="submitted"></div> Submitted
+        <div class="draft"></div> Draft
+        <div class="nonworking"></div> Non Working Day
+        <div class="current"></div> Current Selection
+        <div class="today"></div> Today
+      </div>
+     </div>
+    </div>
+  </section>
+
+  <section class="summary" >
+    <h2><img src="/assets/arrow.png" />Summary</h2>
+    <div class="content">
+      <table>
+        <thead>
+          <td>Week Ending</td>
+          <td>Sa 30</td>
+          <td>Su 31</td>
+          <td>Mo 01</td>
+          <td>Tu 02</td>
+          <td>We 03</td>
+          <td>Th 04</td>
+          <td>Fr 05</td>
+          <td>Total</td>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="title">External:</td>
+            <td *ngFor="let day of selectedDays">{{getHours(day, 'E').toFixed(2)}}</td>
+            <td>{{getTotalHours('E').toFixed(2)}}</td>
+          </tr>
+          <tr *ngIf="getTotalHours('I') > 0">
+            <td class="title">Internal:</td>
+            <td *ngFor="let day of selectedDays">{{getHours(day, 'I').toFixed(2)}}</td>
+            <td>{{getTotalHours('I').toFixed(2)}}</td>
+          </tr>
+          <tr *ngIf="getTotalHours('I') == 0">
+            <td class="title">Internal:</td>
+            <td *ngFor="let day of selectedDays"></td>
+            <td></td>
+          </tr>
+          <tr *ngIf="getTotalHours('A') > 0">
+            <td class="title">Absence:</td>
+            <td *ngFor="let day of selectedDays">{{getHours(day, 'A').toFixed(2)}}</td>
+            <td>{{getTotalHours('A').toFixed(2)}}</td>
+          </tr>
+          <tr *ngIf="getTotalHours('A') == 0">
+            <td class="title">Absence:</td>
+            <td *ngFor="let day of selectedDays"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="title">Total Time:</td>
+            <td *ngFor="let day of selectedDays">{{getHours(day, 'ALL').toFixed(2)}}</td>
+            <td>{{getTotalHours('ALL').toFixed(2)}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="timesheet">
+    <h2><img src="/assets/arrow.png" />Timesheet</h2>
+    <div class="content">
+      <div class="buttons">
+        <button>Previous Period</button>
+        <button>Next Period</button>
+        <button>Update</button>
+        <button>Copy</button>
+        <button>Suggestions</button>
+        <button>Insert Row</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <td style="width: 25px"><img src="/assets/copy.png"/></td>
+            <td style="width: 35px">X</td>
+            <td style="width: 120px">Engagement ID</td>
+            <td>Activity ID</td>
+            <td style="width: 125px">Engagement Name</td>
+            <td style="width: 85px">Client Name</td>
+            <td>Role</td>
+            <td>Work Location</td>
+            <td>Total</td>
+            <td>Sa 30</td>
+            <td style="width: 40px">Det.</td>
+            <td>Su 31</td>
+            <td style="width: 40px">Det.</td>
+            <td>Mo 01</td>
+            <td style="width: 40px">Det.</td>
+            <td>Tu 02</td>
+            <td style="width: 40px">Det.</td>
+            <td>We 03</td>
+            <td style="width: 40px" >Det.</td>
+            <td>Th 04</td>
+            <td style="width: 40px">Det.</td>
+            <td>Fr 05</td>
+            <td style="width: 40px">Det.</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="total">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr *ngFor="let line of timesheet">
+            <td class="disabled"></td>
+            <td class="disabled"></td>
+            <td><input type="text" [(ngModel)]="line.engID"/></td>
+            <td><input type="text" [(ngModel)]="line.actId"/></td>
+            <td class="disabled"></td>
+            <td class="disabled"></td>
+            <td><input type="text" [(ngModel)]="line.role"/></td>
+            <td><input type="text" [(ngModel)]="line.workLoc"/></td>
+            <td class="disabled"></td>
+            <td ><input type="number" [(ngModel)]="line.sat"/></td>
+            <td class="disabled"></td>
+            <td ><input type="number" [(ngModel)]="line.sun"/></td>
+            <td class="disabled"></td>
+            <td ><input type="number" [(ngModel)]="line.mon"/></td>
+            <td class="disabled"></td>
+            <td ><input type="number" [(ngModel)]="line.tue"/></td>
+            <td class="disabled"></td>
+            <td ><input type="number" [(ngModel)]="line.wed"/></td>
+            <td class="disabled"></td>
+            <td ><input type="number" [(ngModel)]="line.thu"/></td>
+            <td class="disabled"></td>
+            <td><input type="number" [(ngModel)]="line.fri"/>/td>
+            <td class="disabled"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+
