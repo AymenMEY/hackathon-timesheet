@@ -1,6 +1,6 @@
 # Tech Club - Hackathon - Worst Timesheet
 <div style="text-align:center;">
-<img src="./images/hackathon.PNG" alt="Hackathon" width="300">
+<img src="./images/hackathon.png" alt="Hackathon" width="300">
 </div>
 
 Welcome to T&I's Hackathon! We're thrilled to have you with us. This hackathon is an opportunity for you to showcase your skills and creativity by building the worst timesheet experience within a limited time frame.
@@ -58,10 +58,10 @@ So, you chose the easy way out... Smart of you. There are preconfigured machines
 
 # Evaluation <a name="evaluation"></a>
 Just like Eurovision, websites will be judged by every participant based on creativity and technical complexity:
-1. Each team presents their result in a few minutes.
-2. Each participant must give 1, 2, 3, 4, or 5 points to each team. Beware a point can only be given once. 
-3. If you feel generous enough, you can even give a +1 for the teams who touched your heart or whose code seems extra innovative. 
-4. Winners get the reward of their lives!
+1. Each team picks a participant who will test their website. 
+3. Each participant must assign 0, 1, 3, and 5 points to each team. Beware a point can only be given once. 
+4. If you feel generous enough, you can even give a +1 for the teams who touched your heart or whose code seems extra innovative. 
+5. Winners get the reward of their lives!
 
 ## Useful Links <a name="links"></a>
 Here are some useful links to help you during the hackathon:
