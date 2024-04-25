@@ -1,3 +1,46 @@
+@keyframes move {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(1300px); }
+    100% { transform: translateX(0); }
+}
+ 
+.submit-button {
+    position: absolute;
+    animation: move 5s linear infinite;
+}
+ 
+
+.popup_container {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    .popup {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 300px;
+        width: 400px;
+        background-color: yellow;
+        padding: 10px;
+        span {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            cursor: pointer;
+            font-size: 5px;
+        }
+        img {
+            width: 150px;
+            height: 150px;
+        }
+    }
+}
+
 header {
     width: 100%;
     background-color: #fff;
@@ -369,16 +412,7 @@ main {
                                     outline: none;
                                 }
 
-                                &::-webkit-outer-spin-button,
-                                &::-webkit-inner-spin-button {
-                                    /* display: none; <- Crashes Chrome on hover */
-                                    -webkit-appearance: none;
-                                    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
-                                }
-
-                                &[type=number] {
-                                    -moz-appearance:textfield; /* Firefox */
-                                }
+                            
                             }
                         }
                     }

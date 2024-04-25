@@ -1,13 +1,47 @@
+<div class="popup_container" *ngIf="this.showPopup">
+  <div class="popup" [style.top]="topPosition" [style.left]="leftPosition">
+    <span (click)="this.closePopup()">x</span>
+    <img src="{{this.currentPicture}}"/>
+    <p>{{this.text[this.currentTextIndex]}}</p>
+  </div>
+</div>
+
+
 <header>
   <h1>Record Working Times</h1>
   <div class="buttons">
     <button>Save as Draft</button>
-    <button (click)="submitTimesheet()">Submit</button>
+    <button (click)="submitTimesheet()" class="submit-button">Submit</button>
     <button>Switch User</button>
   </div>
   <p *ngIf="timesheetSubmitted"><img src="/assets/success.png"/>Timesheet submitted !</p>
   <p *ngIf="timesheetError"><img src="/assets/error.png"/>Error in the timesheet</p>
 </header>
+
+<div style="display: flex; overflow-x: hidden;">
+  <video width="320" height="240" controls autoplay loop>
+    <source src="assets/advert.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <video width="320" height="240" controls autoplay loop>
+    <source src="assets/nyan2.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <video width="320" height="240" controls autoplay loop>
+    <source src="assets/advert.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <video width="320" height="240" controls autoplay loop>
+    <source src="assets/nyan2.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <video width="320" height="240" controls autoplay loop>
+    <source src="assets/advert.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>  
+</div>
+
+
 <main class="main">
 
   <section class="calendar_section">
@@ -122,19 +156,19 @@
             <td>Role</td>
             <td>Work Location</td>
             <td>Total</td>
-            <td>Sa 30</td>
+            <td>{{this.timesheetDaysOfWeek[0]}}</td>
             <td style="width: 40px">Det.</td>
-            <td>Su 31</td>
+            <td>{{this.timesheetDaysOfWeek[1]}}</td>
             <td style="width: 40px">Det.</td>
-            <td>Mo 01</td>
+            <td>{{this.timesheetDaysOfWeek[2]}}</td>
             <td style="width: 40px">Det.</td>
-            <td>Tu 02</td>
+            <td>{{this.timesheetDaysOfWeek[3]}}</td>
             <td style="width: 40px">Det.</td>
-            <td>We 03</td>
-            <td style="width: 40px" >Det.</td>
-            <td>Th 04</td>
+            <td>{{this.timesheetDaysOfWeek[4]}}</td>
             <td style="width: 40px">Det.</td>
-            <td>Fr 05</td>
+            <td>{{this.timesheetDaysOfWeek[5]}}</td>
+            <td style="width: 40px">Det.</td>
+            <td>{{this.timesheetDaysOfWeek[6]}}</td>
             <td style="width: 40px">Det.</td>
           </tr>
         </thead>
@@ -167,26 +201,26 @@
           <tr *ngFor="let line of timesheet">
             <td class="disabled"></td>
             <td class="disabled"></td>
-            <td><input type="text" [(ngModel)]="line.engID"/></td>
+            <td><input type="text"  [(ngModel)]="line.engID"/></td>
             <td><input type="text" [(ngModel)]="line.actID"/></td>
             <td class="disabled"></td>
             <td class="disabled"></td>
             <td><input type="text" [(ngModel)]="line.role"/></td>
             <td><input type="text" [(ngModel)]="line.workLoc"/></td>
             <td class="disabled"></td>
-            <td ><input type="number" [(ngModel)]="line.sat"/></td>
+            <td ><input type="text" [(ngModel)]="line.sat" (change)="onInputChange($event, line, 'sat')"/></td>
             <td class="disabled"></td>
-            <td ><input type="number" [(ngModel)]="line.sun"/></td>
+            <td ><input type="text" [(ngModel)]="line.sun"/></td>
             <td class="disabled"></td>
-            <td ><input type="number" [(ngModel)]="line.mon"/></td>
+            <td ><input type="text" [(ngModel)]="line.mon"/></td>
             <td class="disabled"></td>
-            <td ><input type="number" [(ngModel)]="line.tue"/></td>
+            <td ><input type="text" [(ngModel)]="line.tue"/></td>
             <td class="disabled"></td>
-            <td ><input type="number" [(ngModel)]="line.wed"/></td>
+            <td ><input type="text" [(ngModel)]="line.wed"/></td>
             <td class="disabled"></td>
-            <td ><input type="number" [(ngModel)]="line.thu"/></td>
+            <td ><input type="text" [(ngModel)]="line.thu"/></td>
             <td class="disabled"></td>
-            <td><input type="number" [(ngModel)]="line.fri"/>/td>
+            <td><input type="text" [(ngModel)]="line.fri"/>/td>
             <td class="disabled"></td>
           </tr>
         </tbody>

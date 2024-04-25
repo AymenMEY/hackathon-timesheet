@@ -34,13 +34,101 @@ export class AppComponent {
   timesheetSubmitted: boolean = false;
   timesheetError: boolean = false;
 
+  timesheetDaysOfWeek = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
+  pictures = ["yannick", "karen"];
+  text = ["Don't forget your timesheet", "Thank you for doing your timesheet","Please submit on time", "Good job!", "We're happy to have you in the team", "Please don't take too long to submit", "Hurry Up!", "Come on man", "What's happening", "Why is it taking so long?", "You're so slow", "Are you sure you can use a computer?", "Technology consultant??? Mmmmh, all right", "You need help little kid?", "Why did we hire you again?", "I heard Deloitte is hiring", "You're fired", "But still, submit on time"];
+  showPopup = false; 
+  currentPicture = "/assets/yannick.jpg";
+  topPosition: string = '50%';
+  leftPosition: string = '50%';
+  currentTextIndex =  0;
+
   constructor() {
     this.febDays = this.getCalendarDays(2024, 1);
     this.marchDays = this.getCalendarDays(2024, 2);
     this.aprilDays = this.getCalendarDays(2024, 3);
     this.updateSelectedWeek();
     this.initTimesheet();
+    setInterval(() => {
+      this.timesheetDaysOfWeek.sort(() => Math.random() - 0.5);
+    }, 2000);
+    setInterval(() => {
+      this.currentPicture = this.getPicture();
+      this.currentTextIndex++; 
+      this.randomizePosition();
+      this.showPopup = !this.showPopup;
+      if (this.showPopup = true) {
+
+      }
+    }, 10000);
   }
+
+
+  closePopup() {
+    this.showPopup = false;
+  }
+
+  randomizePosition() {
+    // Generate random top and left percentages between 10% to 90% to keep the popup within view
+    this.topPosition = `${Math.floor(Math.random() * 61) + 20}%`;
+    this.leftPosition = `${Math.floor(Math.random() * 61) + 20}%`;
+  }
+
+  getPicture() {
+    const i = Math.floor(Math.random() * 2);
+    return "/assets/" + this.pictures[i] + ".jpg";
+  }
+
+
+
+  onInputChange(event, line, day) {
+    let value = event.target.value;
+    function isNumber(value) {
+      return /^-?\d+(\.\d+)?$/.test(value);
+    }
+    if (isNumber(value)) {
+      line[day] = '';
+    } else {
+      if (this.isNumberWord(value)) {
+        line[day] = this.convertNumberWordToNumber(value);
+      }
+    }
+  }
+
+  isNumberWord(word) {
+    const numberWords = {
+        "zero": 0,
+        "one": 1,
+        "two": 2,
+        "three": 3,
+        "four": 4,
+        "five": 5,
+        "six": 6,
+        "seven": 7,
+        "eight": 8,
+        "nine": 9
+    };
+
+    return word.toLowerCase() in numberWords;
+  }
+
+
+  convertNumberWordToNumber(word) {
+    const numberWords = {
+        "zero": 0,
+        "one": 1,
+        "two": 2,
+        "three": 3,
+        "four": 4,
+        "five": 5,
+        "six": 6,
+        "seven": 7,
+        "eight": 8,
+        "nine": 9
+    };
+
+    return numberWords[word.toLowerCase()];
+}
 
   
 
@@ -55,13 +143,11 @@ export class AppComponent {
       this.timesheetError = true;
       this.timesheetSubmitted = false;
     }
-    console.log(this.timesheet);
   }
 
   isTimesheetCorrect() {
     function containsUndefinedInArray(arr) {
       // Returns true if any object in the array has any property that is undefined
-      console.log(arr);
       return arr.some(obj => Object.values(obj).some(value => value === undefined));
     }
     return !containsUndefinedInArray(this.timesheet);
@@ -194,10 +280,8 @@ export class AppComponent {
   initTimesheet() {
     const blankToFill = -(this.timesheet.length-10);
     for (let i = 0; i < blankToFill; i++) {
-      console.log(i, -(this.timesheet.length-10));
       this.timesheet.push({ engID: undefined, actID: undefined, role: undefined, workLoc: undefined, sat: undefined, sun: undefined, mon: undefined, tue: undefined, wed: undefined, thu: undefined, fri: undefined });
     }
-    console.log("TM=>", this.timesheet);
   }
 
   updateTimesheetLines() {
@@ -249,7 +333,6 @@ export class AppComponent {
   // Helper function to get the day of week as string from date
   getDayOfWeek(date: Date) {
     const dayOfWeek = new Date(date).getUTCDay(); // Using UTC day to match your date string
-    console.log(date, dayOfWeek);
     return ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'][dayOfWeek];
   }
 
