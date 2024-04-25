@@ -5,7 +5,8 @@
     <button (click)="submitTimesheet()">Submit</button>
     <button>Switch User</button>
   </div>
-  <p *ngIf="timesheet_submitted"><img src="/assets/success.png"/>Timesheet submitted !</p>
+  <p *ngIf="timesheetSubmitted"><img src="/assets/success.png"/>Timesheet submitted !</p>
+  <p *ngIf="timesheetError"><img src="/assets/error.png"/>Error in the timesheet</p>
 </header>
 <main class="main">
 
@@ -65,32 +66,32 @@
         <tbody>
           <tr>
             <td class="title">External:</td>
-            <td *ngFor="let day of selectedDays">{{getHours(day, 'E').toFixed(2)}}</td>
+            <td *ngFor="let day of selectedWeek">{{getHours(day, 'E').toFixed(2)}}</td>
             <td>{{getTotalHours('E').toFixed(2)}}</td>
           </tr>
           <tr *ngIf="getTotalHours('I') > 0">
             <td class="title">Internal:</td>
-            <td *ngFor="let day of selectedDays">{{getHours(day, 'I').toFixed(2)}}</td>
+            <td *ngFor="let day of selectedWeek">{{getHours(day, 'I').toFixed(2)}}</td>
             <td>{{getTotalHours('I').toFixed(2)}}</td>
           </tr>
           <tr *ngIf="getTotalHours('I') == 0">
             <td class="title">Internal:</td>
-            <td *ngFor="let day of selectedDays"></td>
+            <td *ngFor="let day of selectedWeek"></td>
             <td></td>
           </tr>
           <tr *ngIf="getTotalHours('A') > 0">
             <td class="title">Absence:</td>
-            <td *ngFor="let day of selectedDays">{{getHours(day, 'A').toFixed(2)}}</td>
+            <td *ngFor="let day of selectedWeek">{{getHours(day, 'A').toFixed(2)}}</td>
             <td>{{getTotalHours('A').toFixed(2)}}</td>
           </tr>
           <tr *ngIf="getTotalHours('A') == 0">
             <td class="title">Absence:</td>
-            <td *ngFor="let day of selectedDays"></td>
+            <td *ngFor="let day of selectedWeek"></td>
             <td></td>
           </tr>
           <tr>
             <td class="title">Total Time:</td>
-            <td *ngFor="let day of selectedDays">{{getHours(day, 'ALL').toFixed(2)}}</td>
+            <td *ngFor="let day of selectedWeek">{{getHours(day, 'ALL').toFixed(2)}}</td>
             <td>{{getTotalHours('ALL').toFixed(2)}}</td>
           </tr>
         </tbody>
@@ -167,7 +168,7 @@
             <td class="disabled"></td>
             <td class="disabled"></td>
             <td><input type="text" [(ngModel)]="line.engID"/></td>
-            <td><input type="text" [(ngModel)]="line.actId"/></td>
+            <td><input type="text" [(ngModel)]="line.actID"/></td>
             <td class="disabled"></td>
             <td class="disabled"></td>
             <td><input type="text" [(ngModel)]="line.role"/></td>
